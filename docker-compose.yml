@@ -1,0 +1,20 @@
+version: '3'
+services:
+  product-service:
+    build:
+      context: ./menu_service/menu_serv
+    ports:
+      - "5001:5001"
+  order-service:
+    build:
+      context: ./order_service/order_serv
+    ports:
+      - "5002:5002"
+  gateway:
+    build:
+      context: ./gateway/gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - menu_serv
+      - order_serv
